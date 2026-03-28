@@ -1,13 +1,81 @@
 <html>
-<body style="text-align:center; font-family:sans-serif;">
+<head>
+<title>Azaan Pro Site</title>
 
-<h1>Welcome 😎</h1>
-<p>Yeh meri pehli website hai</p>
+<style>
+body {
+  margin: 0;
+  font-family: Arial;
+  background: linear-gradient(to right, #0f172a, #1e293b);
+  color: white;
+  text-align: center;
+}
 
-<br>
+.navbar {
+  background: #020617;
+  padding: 15px;
+  font-size: 20px;
+}
 
-<a href="about.html">About</a><br>
-<a href="contact.html">Contact</a>
+.hero {
+  padding: 80px 20px;
+}
+
+h1 {
+  font-size: 45px;
+}
+
+p {
+  color: lightgray;
+}
+
+.btn {
+  padding: 12px 25px;
+  margin: 10px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+.about {
+  background: #22c55e;
+  color: white;
+}
+
+.contact {
+  background: #3b82f6;
+  color: white;
+}
+
+.footer {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background: #020617;
+  padding: 10px;
+}
+</style>
+
+</head>
+
+<body>
+
+<div class="navbar">
+  🔥 Azaan's Pro Website
+</div>
+
+<div class="hero">
+  <h1>Welcome 😎</h1>
+  <p>This is my professional GitHub website</p>
+
+  <button class="btn about" onclick="location.href='about.html'">About</button>
+  <button class="btn contact" onclick="location.href='contact.html'">Contact</button>
+</div>
+
+<div class="footer">
+  Made by Azaan 💪
+</div>
 
 </body>
 </html>
