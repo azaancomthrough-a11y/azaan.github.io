@@ -5,93 +5,141 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Azaan Tools - Free Online Tools</title>
 
-<meta name="description" content="Free online tools like calculator, word counter and more. Fast, simple and mobile friendly.">
-
 <style>
-body{margin:0;font-family:sans-serif;background:#0f172a;color:white}
-header{padding:40px;text-align:center;background:linear-gradient(135deg,#3b82f6,#9333ea)}
-h1{margin:0;font-size:40px}
-nav{background:#020617;padding:10px;text-align:center}
-nav a{color:#ccc;margin:15px;text-decoration:none}
+body{
+  margin:0;
+  font-family: 'Segoe UI', sans-serif;
+  background:#0f172a;
+  color:white;
+}
+
+header{
+  padding:60px 20px;
+  text-align:center;
+  background:linear-gradient(135deg,#3b82f6,#9333ea);
+}
+
+header h1{font-size:45px;margin:0}
+header p{opacity:0.9}
+
+nav{
+  background:#020617;
+  padding:15px;
+  text-align:center;
+}
+
+nav a{
+  color:#aaa;
+  margin:15px;
+  text-decoration:none;
+  font-size:18px;
+}
+
 nav a:hover{color:white}
-.container{padding:20px;max-width:900px;margin:auto}
-.card{background:#1e293b;padding:20px;border-radius:12px;margin:20px 0}
-button{background:#3b82f6;color:white;border:none;padding:10px 15px;border-radius:8px;cursor:pointer}
-input{padding:10px;border-radius:8px;border:none;width:100%;margin:10px 0}
-footer{text-align:center;padding:20px;background:#020617;color:#888}
+
+.hero{
+  text-align:center;
+  padding:50px 20px;
+}
+
+.hero h2{font-size:35px}
+
+.btn{
+  background:#3b82f6;
+  padding:12px 20px;
+  border-radius:10px;
+  text-decoration:none;
+  color:white;
+  display:inline-block;
+  margin-top:15px;
+}
+
+.container{
+  max-width:1000px;
+  margin:auto;
+  padding:20px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+
+.card{
+  background:#1e293b;
+  padding:20px;
+  border-radius:15px;
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  background:#334155;
+}
+
+footer{
+  text-align:center;
+  padding:20px;
+  background:#020617;
+  color:#888;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<h1>Azaan Tools</h1>
-<p>Fast • Free • Powerful Online Tools</p>
+  <h1>Azaan Tools</h1>
+  <p>Fast • Free • Powerful Online Tools</p>
 </header>
 
 <nav>
-<a href="#">Home</a>
-<a href="#tools">Tools</a>
-<a href="#about">About</a>
+  <a href="#">Home</a>
+  <a href="#tools">Tools</a>
+  <a href="#about">About</a>
 </nav>
+
+<section class="hero">
+  <h2>All Your Free Tools in One Place 🚀</h2>
+  <p>Use powerful tools instantly without signup.</p>
+  <a href="#tools" class="btn">Explore Tools</a>
+</section>
 
 <div class="container">
 
+<h2 id="tools">🔥 Popular Tools</h2>
+
+<div class="grid">
+
 <div class="card">
-<h2>🔥 Free Online Calculator</h2>
-
-<input id="num1" placeholder="Enter first number">
-<input id="num2" placeholder="Enter second number">
-
-<button onclick="add()">Add</button>
-<button onclick="sub()">Subtract</button>
-<button onclick="mul()">Multiply</button>
-<button onclick="div()">Divide</button>
-
-<h3 id="result">Result: </h3>
+<h3>🧮 Calculator</h3>
+<p>Fast and simple calculator.</p>
 </div>
 
-<div class="card" id="tools">
-<h2>🚀 More Tools Coming</h2>
-<p>Word Counter, Text Generator, Age Calculator and more tools coming soon.</p>
+<div class="card">
+<h3>🔤 Word Counter</h3>
+<p>Count words and characters instantly.</p>
 </div>
 
-<div class="card" id="about">
-<h2>About</h2>
-<p>This website provides free and easy-to-use online tools for everyone. Built for speed and simplicity.</p>
+<div class="card">
+<h3>✍ Text Generator</h3>
+<p>Generate text for your needs.</p>
 </div>
+
+</div>
+
+<h2 id="about">About</h2>
+<p>
+Azaan Tools is a modern platform providing free online utilities for students and developers.
+Our goal is to make powerful tools simple and accessible.
+</p>
 
 </div>
 
 <footer>
 © 2026 Azaan Tools
 </footer>
-
-<script>
-function add(){
-let a=+document.getElementById("num1").value;
-let b=+document.getElementById("num2").value;
-document.getElementById("result").innerText="Result: "+(a+b);
-}
-
-function sub(){
-let a=+document.getElementById("num1").value;
-let b=+document.getElementById("num2").value;
-document.getElementById("result").innerText="Result: "+(a-b);
-}
-
-function mul(){
-let a=+document.getElementById("num1").value;
-let b=+document.getElementById("num2").value;
-document.getElementById("result").innerText="Result: "+(a*b);
-}
-
-function div(){
-let a=+document.getElementById("num1").value;
-let b=+document.getElementById("num2").value;
-document.getElementById("result").innerText="Result: "+(a/b);
-}
-</script>
 
 </body>
 </html>
