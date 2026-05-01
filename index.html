@@ -13,7 +13,7 @@ nav a{color:#aaa;margin:10px;text-decoration:none}
 .container{padding:20px;max-width:900px;margin:auto}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px}
 .card{background:#1e293b;padding:20px;border-radius:10px}
-button{padding:10px;border:none;background:#3b82f6;color:white;border-radius:6px}
+button{padding:10px;border:none;background:#3b82f6;color:white;border-radius:6px;cursor:pointer}
 input,textarea{width:100%;padding:10px;margin:5px 0;border-radius:6px;border:none}
 footer{text-align:center;padding:15px;background:#020617}
 </style>
@@ -47,11 +47,16 @@ footer{text-align:center;padding:15px;background:#020617}
 <button onclick="openWord()">Open</button>
 </div>
 
+<div class="card">
+<h3>💻 Code Translator</h3>
+<button onclick="openCode()">Open</button>
 </div>
 
 </div>
 
-<!-- TOOLS -->
+</div>
+
+<!-- CALCULATOR -->
 <div id="calcBox" style="display:none;padding:20px;">
 <h2>Calculator</h2>
 <input id="n1" placeholder="Number 1">
@@ -60,11 +65,20 @@ footer{text-align:center;padding:15px;background:#020617}
 <p id="ans"></p>
 </div>
 
+<!-- WORD COUNTER -->
 <div id="wordBox" style="display:none;padding:20px;">
 <h2>Word Counter</h2>
 <textarea id="text"></textarea>
-<button onclick="count()">Count</button>
+<button onclick="count()">Count Words</button>
 <p id="result"></p>
+</div>
+
+<!-- CODE TRANSLATOR -->
+<div id="codeBox" style="display:none;padding:20px;">
+<h2>Code Translator</h2>
+<textarea id="codeInput" placeholder="Enter text"></textarea>
+<button onclick="translate()">Convert</button>
+<p id="codeOutput"></p>
 </div>
 
 <footer>
@@ -75,18 +89,31 @@ footer{text-align:center;padding:15px;background:#020617}
 function openCalc(){
 document.getElementById("calcBox").style.display="block";
 }
+
 function openWord(){
 document.getElementById("wordBox").style.display="block";
 }
+
+function openCode(){
+document.getElementById("codeBox").style.display="block";
+}
+
 function calc(){
 let a=+document.getElementById("n1").value;
 let b=+document.getElementById("n2").value;
 document.getElementById("ans").innerText="Result: "+(a+b);
 }
+
 function count(){
 let t=document.getElementById("text").value;
 let w=t.trim().split(/\s+/).length;
 document.getElementById("result").innerText="Words: "+w;
+}
+
+function translate(){
+let text=document.getElementById("codeInput").value;
+let result = text.split("").map(c => c.charCodeAt(0)).join(" ");
+document.getElementById("codeOutput").innerText="Code: "+result;
 }
 </script>
 
