@@ -150,10 +150,43 @@ Our goal is to make powerful tools simple and accessible.
 </p>
 
 </div>
+<div id="calcBox" style="display:none; padding:20px;">
+<h2>Calculator</h2>
+<input id="n1" placeholder="Number 1">
+<input id="n2" placeholder="Number 2">
+<button onclick="calc()">Add</button>
+<p id="ans"></p>
+</div>
 
+<div id="wordBox" style="display:none; padding:20px;">
+<h2>Word Counter</h2>
+<textarea id="text" style="width:100%;height:100px;"></textarea>
+<button onclick="count()">Count Words</button>
+<p id="result"></p>
+</div>
 <footer>
 © 2026 Azaan Tools
 </footer>
+<script>
+function openCalc(){
+  document.getElementById("calcBox").style.display="block";
+}
 
+function openWord(){
+  document.getElementById("wordBox").style.display="block";
+}
+
+function calc(){
+  let a=+document.getElementById("n1").value;
+  let b=+document.getElementById("n2").value;
+  document.getElementById("ans").innerText="Result: "+(a+b);
+}
+
+function count(){
+  let text=document.getElementById("text").value;
+  let words=text.trim().split(/\s+/).length;
+  document.getElementById("result").innerText="Words: "+words;
+}
+</script>
 </body>
 </html>
