@@ -1,227 +1,59 @@
-<html>
-
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Azaan | Hacker Web Developer</title>
- <link rel="icon" type="image/png" href="bat.png"> 
-
-<meta name="description" content="Azaan - Professional web developer creating modern hacker-style websites.">
-
-<style>
-body {
-  margin: 0;
-  font-family: monospace;
-  background: black;
-  color: #00ffcc;
-  scroll-behavior: smooth;
-}
-canvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: -1;
-}
-  /* Loader */
-#loader {
-  position: fixed;
-  width: 100%;
-  height: 100%;
-  background: black;
-  color: #00ffcc;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  font-size: 40px;
-  z-index: 9999;
-}
-
-/* Glow animation */
-#loader h1 {
-  animation: glow 1s infinite alternate;
-}
-
-@keyframes glow {
-  from { text-shadow: 0 0 10px #00ffcc; }
-  to { text-shadow: 0 0 25px #00ffcc; }
-}
-
-/* Navbar */
-nav {
-  position: sticky;
-  top: 0;
-  background: #000;
-  padding: 15px;
-  text-align: center;
-  border-bottom: 1px solid #00ffcc;
-}
-
-nav a {
-  color: #00ffcc;
-  margin: 0 15px;
-  text-decoration: none;
-}
-
-/* Sections */
-section {
-  padding: 80px 20px;
-  text-align: center;
-}
-
-h1 {
-  font-size: 32px;
-}
-
-p {
-  color: #aaa;
-  max-width: 600px;
-  margin: auto;
-}
-
-/* Button */
-.btn {
-  padding: 10px 20px;
-  background: #00ffcc;
-  color: black;
-  text-decoration: none;
-  display: inline-block;
-  margin-top: 15px;
-}
-
-/* Divider */
-.line {
-  width: 60%;
-  height: 1px;
-  background: #00ffcc;
-  margin: 40px auto;
-}
-</style>
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Azaan Free Web Tools</title>
+  <meta name="description" content="Best free online tools for students and developers. Fast, simple and free tools.">
 </head>
-<script>
-let canvas = document.getElementById("matrix");
-let ctx = canvas.getContext("2d");
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+<body style="font-family: Arial; margin:0; padding:0; background:#f4f4f4;">
 
-let letters = "AZAAN123456";
-letters = letters.split("");
+<header style="background:#222; color:white; padding:15px; text-align:center;">
+  <h1>Azaan Free Web Tools</h1>
+  <p>Simple, Fast & Free Online Tools</p>
+</header>
 
-let fontSize = 14;
-let columns = canvas.width / fontSize;
-
-let drops = [];
-for(let x = 0; x < columns; x++) drops[x] = 1;
-
-function draw(){
-  ctx.fillStyle = "rgba(0,0,0,0.05)";
-  ctx.fillRect(0,0,canvas.width,canvas.height);
-
-  ctx.fillStyle = "#00ffcc";
-  ctx.font = fontSize + "px monospace";
-
-  for(let i = 0; i < drops.length; i++){
-    let text = letters[Math.floor(Math.random()*letters.length)];
-    ctx.fillText(text, i*fontSize, drops[i]*fontSize);
-
-    if(drops[i]*fontSize > canvas.height && Math.random() > 0.975)
-      drops[i] = 0;
-
-    drops[i]++;
-  }
-}
-
-setInterval(draw, 35);
-</script>
-<body>
-
-<!-- 🔥 Loader -->
-<div id="loader">
-  <h1>Azaan Art</h1>
-</div>
-  <canvas id="matrix"></canvas>
-
-<!-- 🔗 Navbar -->
-<nav>
-  <a href="#home">Home</a>
-  <a href="#about">About</a>
-  <a href="#skills">Skills</a>
-  <a href="#projects">Projects</a>
-  <a href="#contact">Contact</a>
+<nav style="background:#444; padding:10px; text-align:center;">
+  <a href="#" style="color:white; margin:10px;">Home</a>
+  <a href="#tools" style="color:white; margin:10px;">Tools</a>
+  <a href="#about" style="color:white; margin:10px;">About</a>
 </nav>
 
-<!-- 🏠 Home -->
-<section id="home">
-  <h1>Welcome to Azaan's World 💻</h1>
-  <p>I build modern, fast and hacker-style websites that stand out.</p>
+<section style="padding:20px;">
+  <h2>Welcome to Free Tools Website</h2>
+  <p>
+    This website provides useful free tools for students, developers, and everyday users.
+    You can use our tools without signup. Our mission is to make simple and fast tools
+    for everyone. This website is SEO optimized and regularly updated with new tools.
+  </p>
+
+  <p>
+    If you are looking for free online utilities, calculators, and converters, you are in
+    the right place. We provide high-quality and easy-to-use tools.
+  </p>
 </section>
 
-<div class="line"></div>
-
-<!-- 👤 About -->
-<section id="about">
-  <h1>About Me</h1>
-  <p>I am Azaan, a passionate web developer learning advanced skills and building powerful websites.</p>
+<section id="tools" style="padding:20px;">
+  <h2>Our Tools</h2>
+  <ul>
+    <li>✔ Text Generator Tool</li>
+    <li>✔ Simple Calculator (Coming Soon)</li>
+    <li>✔ Word Counter Tool (Coming Soon)</li>
+  </ul>
 </section>
 
-<div class="line"></div>
-
-<!-- 🛠 Skills -->
-<section id="skills">
-  <h1>My Skills</h1>
-  <p>HTML • CSS • GitHub • Responsive Design • Creative UI</p>
+<section id="about" style="padding:20px;">
+  <h2>About Us</h2>
+  <p>
+    Azaan Tools is a free platform to help users with daily digital tasks.
+    We aim to provide simple and effective tools for everyone.
+  </p>
 </section>
 
-<div class="line"></div>
-
-<!-- 💼 Projects -->
-<section id="projects">
-  <h1>Projects</h1>
-  <p>Portfolio Website, Landing Pages, Beginner Web Apps and more coming soon...</p>
-</section>
-
-<div class="line"></div>
-
-<!-- 🔥 Extra Long Content -->
-<section>
-  <h1>Experience</h1>
-  <p>Working on multiple small projects and improving daily with new designs and concepts.</p>
-</section>
-
-<section>
-  <h1>Mission</h1>
-  <p>My goal is to become a professional developer and create high-level digital experiences.</p>
-</section>
-
-<section>
-  <h1>Vision</h1>
-  <p>To build powerful, fast and secure websites that feel like real applications.</p>
-</section>
-
-<section>
-  <h1>More About Me</h1>
-  <p>I love coding, learning new things, and building creative UI designs.</p>
-</section>
-
-<div class="line"></div>
-
-<!-- 📞 Contact -->
-<section id="contact">
-  <h1>Contact Me</h1>
-  <p>Email: yourname@gmail.com</p>
-  <a href="mailto:yourname@gmail.com" class="btn">Message Me</a>
-</section>
-
-<!-- ⚡ JS -->
-<script>
-window.addEventListener("load", function(){
-  setTimeout(function(){
-    document.getElementById("loader").style.display = "none";
-  }, 2000);
-});
-</script>
+<footer style="background:#222; color:white; text-align:center; padding:10px;">
+  <p>© 2026 Azaan Tools | All Rights Reserved</p>
+</footer>
 
 </body>
-
 </html>
