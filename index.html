@@ -4,10 +4,14 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Football World | Legends, Teams & Matches</title>
-<meta name="description" content="Football World — explore legendary players, famous teams, matches and football moments.">
+<title>Football World | The Beautiful Game</title>
 
 <style>
+
+/* =========================
+   RESET
+========================= */
+
 *{
     margin:0;
     padding:0;
@@ -19,56 +23,152 @@ html{
 }
 
 body{
-    font-family:Arial, Helvetica, sans-serif;
-    background:#020812;
+    font-family:Arial,Helvetica,sans-serif;
+    background:#020811;
     color:white;
     overflow-x:hidden;
 }
 
-/* BACKGROUND */
-body::before{
-    content:"";
+/* =========================
+   LOADING SCREEN
+========================= */
+
+#loader{
     position:fixed;
     inset:0;
+    z-index:99999;
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
     background:
-        radial-gradient(circle at 20% 10%,rgba(0,255,150,.08),transparent 30%),
-        radial-gradient(circle at 80% 30%,rgba(0,150,255,.08),transparent 35%);
-    pointer-events:none;
-    z-index:-1;
+    radial-gradient(circle at center,#123449,#020811 55%,#000);
+
+    transition:opacity .8s,visibility .8s;
 }
 
-/* NAVBAR */
+#loader.hide{
+    opacity:0;
+    visibility:hidden;
+}
+
+.loader-ball{
+    font-size:75px;
+
+    animation:
+    spin 1.3s linear infinite,
+    pulse 1s ease-in-out infinite alternate;
+
+    filter:drop-shadow(0 0 20px #39ff9a);
+}
+
+@keyframes spin{
+    from{
+        transform:rotate(0deg);
+    }
+    to{
+        transform:rotate(360deg);
+    }
+}
+
+@keyframes pulse{
+    from{
+        scale:1;
+    }
+    to{
+        scale:1.15;
+    }
+}
+
+.loader-title{
+    margin-top:20px;
+    font-size:30px;
+    font-weight:900;
+    letter-spacing:2px;
+}
+
+.loader-title span{
+    color:#39ff9a;
+}
+
+.loader-text{
+    margin-top:8px;
+    color:#8b9aaa;
+    font-size:13px;
+}
+
+.loader-bar{
+    width:230px;
+    height:5px;
+
+    margin-top:25px;
+
+    background:#172536;
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.loader-progress{
+    height:100%;
+    width:0;
+
+    background:#39ff9a;
+
+    animation:load 2.3s forwards;
+}
+
+@keyframes load{
+    to{
+        width:100%;
+    }
+}
+
+
+/* =========================
+   NAVBAR
+========================= */
+
 nav{
     position:sticky;
     top:0;
-    z-index:1000;
+    z-index:5000;
+
     height:68px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
+
     padding:0 4%;
-    background:rgba(2,8,18,.92);
-    backdrop-filter:blur(15px);
+
+    background:rgba(2,8,17,.9);
+    backdrop-filter:blur(18px);
+
     border-bottom:1px solid rgba(255,255,255,.08);
 }
 
 .logo{
-    font-size:26px;
-    font-weight:800;
     display:flex;
     align-items:center;
     gap:10px;
+
+    font-size:25px;
+    font-weight:900;
 }
 
 .logo-ball{
     width:32px;
     height:32px;
-    border-radius:50%;
-    background:white;
+
     display:grid;
     place-items:center;
-    color:#111;
-    font-size:18px;
+
+    background:white;
+    color:black;
+
+    border-radius:50%;
 }
 
 .nav-links{
@@ -77,10 +177,12 @@ nav{
 }
 
 .nav-links a{
-    color:#ddd;
+    color:#cbd5e1;
     text-decoration:none;
+
     font-size:14px;
     font-weight:600;
+
     transition:.3s;
 }
 
@@ -91,12 +193,16 @@ nav{
 .search{
     width:190px;
     height:38px;
-    border-radius:25px;
-    border:none;
-    outline:none;
-    padding:0 16px;
-    background:#142235;
+
+    border:0;
+    outline:0;
+
+    border-radius:30px;
+
+    background:#142233;
     color:white;
+
+    padding:0 15px;
 }
 
 .menu{
@@ -104,44 +210,85 @@ nav{
     font-size:25px;
 }
 
-/* HERO */
+
+/* =========================
+   HERO
+========================= */
+
 .hero{
     min-height:510px;
-    position:relative;
-    overflow:hidden;
+
     display:flex;
     align-items:center;
+
     padding:70px 4%;
+
+    position:relative;
+    overflow:hidden;
+
     background:
-        linear-gradient(90deg,#020812 5%,rgba(2,8,18,.8) 35%,rgba(2,8,18,.15)),
-        url("images/stadium.jpg") center/cover;
+    radial-gradient(
+        circle at 75% 45%,
+        rgba(0,130,255,.22),
+        transparent 30%
+    ),
+    linear-gradient(
+        90deg,
+        #020811 10%,
+        #020811 35%,
+        rgba(2,8,17,.55),
+        #020811
+    );
+}
+
+.hero::before{
+    content:"⚽";
+
+    position:absolute;
+
+    right:7%;
+    top:35px;
+
+    font-size:350px;
+
+    opacity:.05;
+
+    transform:rotate(-15deg);
 }
 
 .hero::after{
     content:"";
+
     position:absolute;
-    inset:0;
-    background:linear-gradient(transparent 60%,#020812);
-    pointer-events:none;
+    left:0;
+    right:0;
+    bottom:0;
+
+    height:130px;
+
+    background:linear-gradient(
+        transparent,
+        #020811
+    );
 }
 
 .hero-content{
-    max-width:600px;
     position:relative;
     z-index:2;
+
+    max-width:620px;
 }
 
 .small-title{
-    color:#39ff9a;
-    font-weight:bold;
+    color:#fff;
     margin-bottom:15px;
-    letter-spacing:1px;
+    font-size:14px;
 }
 
 .hero h1{
-    font-size:65px;
+    font-size:64px;
     line-height:.98;
-    margin-bottom:20px;
+    margin-bottom:22px;
 }
 
 .hero h1 span{
@@ -149,43 +296,47 @@ nav{
 }
 
 .hero p{
-    color:#cbd5e1;
+    color:#c3ceda;
     line-height:1.7;
-    font-size:16px;
-    max-width:500px;
+    max-width:520px;
 }
 
 .buttons{
     display:flex;
-    gap:15px;
-    margin-top:30px;
+    gap:14px;
+    margin-top:28px;
 }
 
 .btn{
-    padding:14px 24px;
+    padding:14px 25px;
+
     border-radius:30px;
+
     text-decoration:none;
     font-weight:bold;
-    display:inline-block;
+
     transition:.3s;
 }
 
-.btn-green{
-    background:#39ff9a;
-    color:#00150b;
-}
-
-.btn-outline{
-    border:1px solid #39ff9a;
-    color:white;
-}
-
 .btn:hover{
-    transform:translateY(-3px);
-    box-shadow:0 10px 30px rgba(57,255,154,.2);
+    transform:translateY(-4px);
 }
 
-/* SECTIONS */
+.green-btn{
+    background:#39ff9a;
+    color:#00140a;
+}
+
+.outline-btn{
+    color:white;
+    border:1px solid #39ff9a;
+}
+
+
+/* =========================
+   SECTIONS
+========================= */
+
 section{
     padding:55px 4%;
 }
@@ -194,6 +345,7 @@ section{
     display:flex;
     justify-content:space-between;
     align-items:end;
+
     margin-bottom:25px;
 }
 
@@ -201,23 +353,26 @@ section{
     font-size:28px;
 }
 
-.section-title span{
+.green{
     color:#39ff9a;
 }
 
 .section-sub{
-    color:#8290a3;
-    margin-top:7px;
-    font-size:14px;
+    margin-top:6px;
+    color:#8290a2;
+    font-size:13px;
 }
 
 .view{
     color:#39ff9a;
     text-decoration:none;
-    font-size:14px;
 }
 
-/* PLAYERS */
+
+/* =========================
+   PLAYERS
+========================= */
+
 .players{
     display:grid;
     grid-template-columns:repeat(5,1fr);
@@ -226,266 +381,567 @@ section{
 
 .player{
     height:350px;
+
     position:relative;
     overflow:hidden;
+
     border-radius:12px;
-    background:linear-gradient(180deg,#102237,#06111e);
-    border:1px solid #17334d;
+
+    background:
+    linear-gradient(
+        180deg,
+        #10253a,
+        #06111d
+    );
+
+    border:1px solid #17344d;
+
     transition:.35s;
 }
 
 .player:hover{
     transform:translateY(-8px);
+
     border-color:#39ff9a;
-    box-shadow:0 15px 35px rgba(0,255,150,.12);
+
+    box-shadow:
+    0 20px 40px rgba(57,255,154,.12);
 }
 
-.player-img{
-    width:100%;
-    height:255px;
+.player-art{
+    height:275px;
+
     display:flex;
+    align-items:center;
     justify-content:center;
-    align-items:flex-end;
+
+    position:relative;
+
     background:
-        radial-gradient(circle at 50% 40%,rgba(50,120,255,.22),transparent 50%);
+    radial-gradient(
+        circle,
+        rgba(50,150,255,.2),
+        transparent 65%
+    );
 }
 
-.player-img img{
-    width:100%;
-    height:100%;
-    object-fit:contain;
-    object-position:center bottom;
+/* Built-in player illustration */
+.player-person{
+    position:relative;
+
+    width:110px;
+    height:220px;
+
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+}
+
+/* head */
+.head{
+    width:52px;
+    height:52px;
+
+    border-radius:50%;
+
+    background:#d89b70;
+
+    position:relative;
+    z-index:2;
+
+    border:3px solid rgba(255,255,255,.2);
+}
+
+/* hair */
+.head::before{
+    content:"";
+
+    position:absolute;
+
+    width:55px;
+    height:25px;
+
+    top:-5px;
+    left:-4px;
+
+    border-radius:50% 50% 30% 30%;
+
+    background:#171717;
+}
+
+/* body */
+.body{
+    width:75px;
+    height:90px;
+
+    margin-top:5px;
+
+    border-radius:20px 20px 12px 12px;
+
+    background:#123f85;
+
+    position:relative;
+}
+
+/* shirt number */
+.body::after{
+    content:"10";
+
+    position:absolute;
+
+    top:28px;
+    left:0;
+    right:0;
+
+    text-align:center;
+
+    font-size:27px;
+    font-weight:900;
+
+    color:white;
+}
+
+/* arms */
+.arm{
+    position:absolute;
+
+    width:18px;
+    height:75px;
+
+    border-radius:20px;
+
+    background:#d89b70;
+
+    top:65px;
+}
+
+.arm.left{
+    left:-12px;
+    transform:rotate(15deg);
+}
+
+.arm.right{
+    right:-12px;
+    transform:rotate(-15deg);
+}
+
+/* legs */
+.leg{
+    width:25px;
+    height:75px;
+
+    background:#111827;
+
+    border-radius:8px;
+
+    position:absolute;
+
+    top:165px;
+}
+
+.leg.left{
+    left:30px;
+    transform:rotate(5deg);
+}
+
+.leg.right{
+    right:30px;
+    transform:rotate(-5deg);
+}
+
+/* football */
+.football{
+    position:absolute;
+
+    right:-55px;
+    bottom:10px;
+
+    font-size:43px;
+
+    filter:drop-shadow(
+        0 0 10px rgba(255,255,255,.3)
+    );
+
+    animation:ballFloat 2s ease-in-out infinite;
+}
+
+@keyframes ballFloat{
+    0%,100%{
+        transform:translateY(0) rotate(0deg);
+    }
+
+    50%{
+        transform:translateY(-10px) rotate(20deg);
+    }
 }
 
 .player-info{
     position:absolute;
+
     bottom:0;
-    width:100%;
-    padding:16px;
-    background:linear-gradient(transparent,rgba(0,0,0,.95));
+    left:0;
+    right:0;
+
+    padding:35px 13px 13px;
+
+    background:
+    linear-gradient(
+        transparent,
+        rgba(0,0,0,.97)
+    );
 }
 
 .player-info h3{
-    font-size:17px;
+    font-size:16px;
 }
 
 .player-info p{
-    color:#8d9bad;
-    font-size:12px;
-    margin-top:4px;
+    margin-top:5px;
+
+    color:#8392a3;
+    font-size:11px;
 }
 
 .number{
     position:absolute;
+
     right:10px;
     bottom:12px;
+
     width:28px;
     height:28px;
-    border-radius:50%;
-    background:#173a8a;
+
     display:grid;
     place-items:center;
-    font-size:12px;
+
+    background:#17418f;
+
+    border-radius:50%;
+
+    font-size:11px;
     font-weight:bold;
 }
 
-/* TEAMS */
+
+/* =========================
+   TEAMS
+========================= */
+
 .teams{
     display:grid;
     grid-template-columns:repeat(5,1fr);
-    gap:14px;
+    gap:13px;
 }
 
 .team{
-    height:150px;
-    border-radius:12px;
-    overflow:hidden;
+    height:145px;
+
     position:relative;
-    background:#0b1725;
-    border:1px solid #17334d;
+    overflow:hidden;
+
+    border-radius:12px;
+
+    background:
+    linear-gradient(
+        135deg,
+        #10243a,
+        #07111d
+    );
+
+    border:1px solid #17344d;
+
     transition:.3s;
 }
 
 .team:hover{
-    transform:translateY(-5px);
+    transform:translateY(-6px);
     border-color:#39ff9a;
 }
 
-.team img{
-    width:100%;
+.team-logo{
     height:100%;
-    object-fit:cover;
-    opacity:.55;
+
+    display:grid;
+    place-items:center;
+
+    font-size:65px;
+
+    opacity:.85;
 }
 
 .team-info{
     position:absolute;
-    inset:0;
-    display:flex;
-    flex-direction:column;
-    justify-content:end;
-    padding:15px;
-    background:linear-gradient(transparent,rgba(0,0,0,.9));
+
+    bottom:0;
+    left:0;
+    right:0;
+
+    padding:13px;
+
+    background:linear-gradient(
+        transparent,
+        rgba(0,0,0,.95)
+    );
 }
 
 .team-info h3{
-    font-size:15px;
+    font-size:14px;
 }
 
 .team-info p{
-    color:#9ca8b7;
-    font-size:11px;
+    color:#8998aa;
+    font-size:10px;
     margin-top:4px;
 }
 
-/* LOWER GRID */
+
+/* =========================
+   LOWER GRID
+========================= */
+
 .lower{
     display:grid;
-    grid-template-columns:1.2fr 1fr 1fr;
+
+    grid-template-columns:1.15fr 1fr 1fr;
+
     gap:18px;
 }
 
 .box{
     background:#071321;
-    border:1px solid #153047;
+
+    border:1px solid #153148;
+
     border-radius:13px;
+
     overflow:hidden;
 }
 
 .box-title{
     padding:18px;
+
+    border-bottom:1px solid #153148;
+
     font-size:18px;
     font-weight:bold;
-    border-bottom:1px solid #153047;
 }
 
+
+/* Champions */
 .champions{
-    min-height:300px;
+    min-height:320px;
+
     display:flex;
-    align-items:end;
+    align-items:flex-end;
+
     padding:25px;
+
     background:
-        linear-gradient(transparent,rgba(0,0,0,.9)),
-        url("images/champions.jpg") center/cover;
+    radial-gradient(
+        circle at center,
+        #123b55,
+        #06101b
+    );
+}
+
+.champions-ball{
+    position:absolute;
+    font-size:130px;
+    opacity:.12;
 }
 
 .champions h2{
-    font-size:26px;
+    font-size:27px;
 }
 
 .champions span{
     color:#39ff9a;
 }
 
-/* MATCHES */
+
+/* Matches */
 .match{
-    display:flex;
-    justify-content:space-between;
+    display:grid;
+
+    grid-template-columns:55px 1fr 55px 1fr;
+
     align-items:center;
-    padding:16px;
-    border-bottom:1px solid #102337;
-    font-size:13px;
+
+    padding:15px;
+
+    font-size:11px;
+
+    border-bottom:1px solid #102336;
 }
 
 .match:last-child{
-    border-bottom:none;
+    border-bottom:0;
 }
 
-.match .date{
-    color:#78889a;
-    width:70px;
+.date{
+    color:#718195;
 }
 
 .score{
+    text-align:center;
+
     font-weight:bold;
-    font-size:17px;
+    font-size:14px;
 }
 
-/* NEWS */
+
+/* News */
 .news{
     display:flex;
     gap:12px;
+
     padding:13px;
-    border-bottom:1px solid #102337;
+
+    border-bottom:1px solid #102336;
 }
 
-.news img{
-    width:65px;
-    height:55px;
-    object-fit:cover;
-    border-radius:7px;
+.news-icon{
+    width:55px;
+    height:50px;
+
+    flex-shrink:0;
+
+    display:grid;
+    place-items:center;
+
+    background:#10283c;
+
+    border-radius:8px;
+
+    font-size:27px;
 }
 
 .news h4{
-    font-size:13px;
+    font-size:12px;
     line-height:1.4;
 }
 
 .news p{
     color:#718094;
-    font-size:11px;
-    margin-top:4px;
+    font-size:10px;
+    margin-top:5px;
 }
 
-/* GALLERY */
-.gallery{
-    display:grid;
-    grid-template-columns:repeat(5,1fr);
-    gap:10px;
-}
 
-.gallery img{
-    width:100%;
-    height:140px;
-    object-fit:cover;
-    border-radius:10px;
-    transition:.3s;
-}
+/* =========================
+   QUOTE
+========================= */
 
-.gallery img:hover{
-    transform:scale(1.04);
-}
-
-/* QUOTE */
 .quote{
-    margin-top:20px;
-    padding:35px;
-    background:linear-gradient(135deg,#071827,#0a1e2d);
-    border:1px solid #153047;
-    border-radius:15px;
+    padding:40px;
+
     text-align:center;
+
+    border:1px solid #153148;
+
+    border-radius:15px;
+
+    background:
+    radial-gradient(
+        circle,
+        #0c2938,
+        #06111d
+    );
+}
+
+.quote-mark{
+    color:#39ff9a;
+    font-size:50px;
 }
 
 .quote p{
-    font-size:24px;
-    font-weight:bold;
     max-width:700px;
+
     margin:auto;
+
+    font-size:23px;
+    line-height:1.5;
+
+    font-weight:bold;
 }
 
 .quote span{
     display:block;
-    color:#39ff9a;
+
     margin-top:15px;
+
+    color:#39ff9a;
 }
 
-/* FOOTER */
+
+/* =========================
+   GALLERY
+========================= */
+
+.gallery{
+    display:grid;
+
+    grid-template-columns:repeat(5,1fr);
+
+    gap:10px;
+}
+
+.gallery-card{
+    height:145px;
+
+    display:grid;
+    place-items:center;
+
+    border-radius:10px;
+
+    border:1px solid #17344d;
+
+    background:
+    radial-gradient(
+        circle,
+        #123d55,
+        #07121e
+    );
+
+    font-size:55px;
+
+    transition:.3s;
+}
+
+.gallery-card:hover{
+    transform:scale(1.04);
+    border-color:#39ff9a;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
 footer{
-    margin-top:40px;
     padding:35px 4%;
-    border-top:1px solid #153047;
+
+    border-top:1px solid #153148;
+
     display:flex;
     justify-content:space-between;
+
     color:#8190a1;
-    font-size:13px;
+
+    font-size:12px;
 }
 
 footer strong{
     color:white;
+    font-size:20px;
 }
 
-/* MOBILE */
-@media(max-width:1000px){
+
+/* =========================
+   MOBILE
+========================= */
+
+@media(max-width:1050px){
 
     .players{
         grid-template-columns:repeat(3,1fr);
@@ -503,9 +959,6 @@ footer strong{
         grid-template-columns:repeat(3,1fr);
     }
 
-    .search{
-        display:none;
-    }
 }
 
 @media(max-width:700px){
@@ -518,24 +971,26 @@ footer strong{
         display:none;
     }
 
+    .search{
+        display:none;
+    }
+
     .menu{
         display:block;
     }
 
     .hero{
-        min-height:600px;
-        padding:50px 22px;
-        background:
-            linear-gradient(90deg,#020812 5%,rgba(2,8,18,.55)),
-            url("images/stadium.jpg") center/cover;
+        min-height:590px;
+        padding:55px 20px;
     }
 
     .hero h1{
-        font-size:48px;
+        font-size:47px;
     }
 
     .players{
         grid-template-columns:repeat(2,1fr);
+        gap:9px;
     }
 
     .teams{
@@ -547,44 +1002,28 @@ footer strong{
     }
 
     section{
-        padding:40px 18px;
-    }
-
-    .section-title{
-        font-size:23px;
+        padding:42px 18px;
     }
 
     .player{
-        height:330px;
+        height:320px;
     }
 
-    .player-img{
-        height:240px;
+    .player-art{
+        height:245px;
     }
 
     footer{
         flex-direction:column;
         gap:15px;
     }
+
 }
 
-@media(max-width:430px){
-
-    .players{
-        grid-template-columns:1fr 1fr;
-        gap:8px;
-    }
-
-    .player{
-        height:290px;
-    }
-
-    .player-img{
-        height:210px;
-    }
+@media(max-width:420px){
 
     .hero h1{
-        font-size:40px;
+        font-size:39px;
     }
 
     .buttons{
@@ -594,44 +1033,110 @@ footer strong{
     .btn{
         text-align:center;
     }
+
+    .player{
+        height:290px;
+    }
+
+    .player-art{
+        height:215px;
+    }
+
+    .match{
+        grid-template-columns:42px 1fr 45px 1fr;
+        font-size:9px;
+    }
+
 }
+
 </style>
 </head>
 
+
 <body>
 
-<!-- NAVBAR -->
-<nav>
-    <div class="logo">
-        <div class="logo-ball">⚽</div>
-        Football
+
+<!-- =========================
+     LOADING
+========================= -->
+
+<div id="loader">
+
+    <div class="loader-ball">
+        ⚽
     </div>
 
+    <div class="loader-title">
+        FOOTBALL <span>WORLD</span>
+    </div>
+
+    <div class="loader-text">
+        Loading the beautiful game...
+    </div>
+
+    <div class="loader-bar">
+        <div class="loader-progress"></div>
+    </div>
+
+</div>
+
+
+<!-- =========================
+     NAVBAR
+========================= -->
+
+<nav>
+
+    <div class="logo">
+
+        <div class="logo-ball">
+            ⚽
+        </div>
+
+        Football
+
+    </div>
+
+
     <div class="nav-links">
+
         <a href="#home">Home</a>
         <a href="#players">Players</a>
         <a href="#teams">Teams</a>
         <a href="#matches">Matches</a>
         <a href="#about">About</a>
+
     </div>
 
-    <input class="search" placeholder="Search players, teams...">
 
-    <div class="menu">☰</div>
+    <input
+        class="search"
+        placeholder="Search players, teams..."
+    >
+
+
+    <div class="menu">
+        ☰
+    </div>
+
 </nav>
 
 
-<!-- HERO -->
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero" id="home">
 
     <div class="hero-content">
 
         <div class="small-title">
-            THE BEAUTIFUL GAME
+            The Beautiful Game
         </div>
 
         <h1>
-            Football Unites<br>
+            Football Unites
+            <br>
             <span>The World</span>
         </h1>
 
@@ -640,14 +1145,23 @@ footer strong{
             Football is more than a game — it's a way of life.
         </p>
 
+
         <div class="buttons">
-            <a href="#players" class="btn btn-green">
+
+            <a
+                href="#players"
+                class="btn green-btn"
+            >
                 Explore Now →
             </a>
 
-            <a href="#gallery" class="btn btn-outline">
+            <a
+                href="#gallery"
+                class="btn outline-btn"
+            >
                 ▶ Watch Video
             </a>
+
         </div>
 
     </div>
@@ -655,267 +1169,693 @@ footer strong{
 </section>
 
 
-<!-- PLAYERS -->
+<!-- =========================
+     PLAYERS
+========================= -->
+
 <section id="players">
 
     <div class="section-head">
+
         <div>
-            <h2 class="section-title">⭐ Top <span>Players</span></h2>
-            <p class="section-sub">Legends. Icons. Game Changers.</p>
+
+            <h2 class="section-title">
+                ⭐ Top <span class="green">Players</span>
+            </h2>
+
+            <p class="section-sub">
+                Legends. Icons. Game Changers.
+            </p>
+
         </div>
 
-        <a href="#" class="view">View All →</a>
+        <a href="#" class="view">
+            View All →
+        </a>
+
     </div>
 
 
     <div class="players">
 
-        <!-- PLAYER 1 -->
+
+        <!-- MESSI -->
+
         <div class="player">
-            <div class="player-img">
-                <img src="images/messi.png" alt="Lionel Messi">
+
+            <div class="player-art">
+
+                <div class="player-person">
+
+                    <div class="head"></div>
+
+                    <div class="body"></div>
+
+                    <div class="arm left"></div>
+                    <div class="arm right"></div>
+
+                    <div class="leg left"></div>
+                    <div class="leg right"></div>
+
+                    <div class="football">
+                        ⚽
+                    </div>
+
+                </div>
+
             </div>
+
             <div class="player-info">
-                <h3>Lionel Messi</h3>
-                <p>Argentina • Forward</p>
+
+                <h3>
+                    Lionel Messi
+                </h3>
+
+                <p>
+                    🇦🇷 Argentina • Forward
+                </p>
+
             </div>
-            <div class="number">10</div>
+
+            <div class="number">
+                10
+            </div>
+
         </div>
 
-        <!-- PLAYER 2 -->
+
+        <!-- RONALDO -->
+
         <div class="player">
-            <div class="player-img">
-                <img src="images/ronaldo.png" alt="Cristiano Ronaldo">
+
+            <div class="player-art">
+
+                <div class="player-person">
+
+                    <div class="head"></div>
+
+                    <div
+                        class="body"
+                        style="background:#c9152b;"
+                    ></div>
+
+                    <div class="arm left"></div>
+                    <div class="arm right"></div>
+
+                    <div class="leg left"></div>
+                    <div class="leg right"></div>
+
+                    <div class="football">
+                        ⚽
+                    </div>
+
+                </div>
+
             </div>
+
             <div class="player-info">
-                <h3>Cristiano Ronaldo</h3>
-                <p>Portugal • Forward</p>
+
+                <h3>
+                    Cristiano Ronaldo
+                </h3>
+
+                <p>
+                    🇵🇹 Portugal • Forward
+                </p>
+
             </div>
-            <div class="number">7</div>
+
+            <div class="number">
+                7
+            </div>
+
         </div>
 
-        <!-- PLAYER 3 -->
+
+        <!-- NEYMAR -->
+
         <div class="player">
-            <div class="player-img">
-                <img src="images/neymar.png" alt="Neymar">
+
+            <div class="player-art">
+
+                <div class="player-person">
+
+                    <div class="head"></div>
+
+                    <div
+                        class="body"
+                        style="background:#e5c900;"
+                    ></div>
+
+                    <div class="arm left"></div>
+                    <div class="arm right"></div>
+
+                    <div class="leg left"></div>
+                    <div class="leg right"></div>
+
+                    <div class="football">
+                        ⚽
+                    </div>
+
+                </div>
+
             </div>
+
             <div class="player-info">
-                <h3>Neymar Jr</h3>
-                <p>Brazil • Forward</p>
+
+                <h3>
+                    Neymar Jr
+                </h3>
+
+                <p>
+                    🇧🇷 Brazil • Forward
+                </p>
+
             </div>
-            <div class="number">10</div>
+
+            <div class="number">
+                10
+            </div>
+
         </div>
 
-        <!-- PLAYER 4 -->
+
+        <!-- MBAPPE -->
+
         <div class="player">
-            <div class="player-img">
-                <img src="images/mbappe.png" alt="Kylian Mbappe">
+
+            <div class="player-art">
+
+                <div class="player-person">
+
+                    <div class="head"></div>
+
+                    <div
+                        class="body"
+                        style="background:#14295e;"
+                    ></div>
+
+                    <div class="arm left"></div>
+                    <div class="arm right"></div>
+
+                    <div class="leg left"></div>
+                    <div class="leg right"></div>
+
+                    <div class="football">
+                        ⚽
+                    </div>
+
+                </div>
+
             </div>
+
             <div class="player-info">
-                <h3>Kylian Mbappé</h3>
-                <p>France • Forward</p>
+
+                <h3>
+                    Kylian Mbappé
+                </h3>
+
+                <p>
+                    🇫🇷 France • Forward
+                </p>
+
             </div>
-            <div class="number">10</div>
+
+            <div class="number">
+                10
+            </div>
+
         </div>
 
-        <!-- PLAYER 5 -->
+
+        <!-- HAALAND -->
+
         <div class="player">
-            <div class="player-img">
-                <img src="images/haaland.png" alt="Erling Haaland">
+
+            <div class="player-art">
+
+                <div class="player-person">
+
+                    <div class="head"></div>
+
+                    <div
+                        class="body"
+                        style="background:#63a7e8;"
+                    ></div>
+
+                    <div class="arm left"></div>
+                    <div class="arm right"></div>
+
+                    <div class="leg left"></div>
+                    <div class="leg right"></div>
+
+                    <div class="football">
+                        ⚽
+                    </div>
+
+                </div>
+
             </div>
+
             <div class="player-info">
-                <h3>Erling Haaland</h3>
-                <p>Norway • Forward</p>
+
+                <h3>
+                    Erling Haaland
+                </h3>
+
+                <p>
+                    🇳🇴 Norway • Forward
+                </p>
+
             </div>
-            <div class="number">9</div>
+
+            <div class="number">
+                9
+            </div>
+
         </div>
 
-        <!-- PLAYER 6 -->
+
+        <!-- DE BRUYNE -->
+
         <div class="player">
-            <div class="player-img">
-                <img src="images/debruyne.png" alt="Kevin De Bruyne">
+
+            <div class="player-art">
+
+                <div class="player-person">
+
+                    <div class="head"></div>
+
+                    <div
+                        class="body"
+                        style="background:#e21b32;"
+                    ></div>
+
+                    <div class="arm left"></div>
+                    <div class="arm right"></div>
+
+                    <div class="leg left"></div>
+                    <div class="leg right"></div>
+
+                    <div class="football">
+                        ⚽
+                    </div>
+
+                </div>
+
             </div>
+
             <div class="player-info">
-                <h3>Kevin De Bruyne</h3>
-                <p>Belgium • Midfielder</p>
+
+                <h3>
+                    Kevin De Bruyne
+                </h3>
+
+                <p>
+                    🇧🇪 Belgium • Midfielder
+                </p>
+
             </div>
-            <div class="number">17</div>
+
+            <div class="number">
+                17
+            </div>
+
         </div>
 
-        <!-- PLAYER 7 -->
+
+        <!-- MODRIC -->
+
         <div class="player">
-            <div class="player-img">
-                <img src="images/modric.png" alt="Luka Modric">
+
+            <div class="player-art">
+
+                <div class="player-person">
+
+                    <div class="head"></div>
+
+                    <div
+                        class="body"
+                        style="background:#eee;"
+                    ></div>
+
+                    <div class="arm left"></div>
+                    <div class="arm right"></div>
+
+                    <div class="leg left"></div>
+                    <div class="leg right"></div>
+
+                    <div class="football">
+                        ⚽
+                    </div>
+
+                </div>
+
             </div>
+
             <div class="player-info">
-                <h3>Luka Modrić</h3>
-                <p>Croatia • Midfielder</p>
+
+                <h3>
+                    Luka Modrić
+                </h3>
+
+                <p>
+                    🇭🇷 Croatia • Midfielder
+                </p>
+
             </div>
-            <div class="number">10</div>
+
+            <div class="number">
+                10
+            </div>
+
         </div>
 
-        <!-- PLAYER 8 -->
+
+        <!-- SALAH -->
+
         <div class="player">
-            <div class="player-img">
-                <img src="images/salah.png" alt="Mohamed Salah">
+
+            <div class="player-art">
+
+                <div class="player-person">
+
+                    <div class="head"></div>
+
+                    <div
+                        class="body"
+                        style="background:#d4142f;"
+                    ></div>
+
+                    <div class="arm left"></div>
+                    <div class="arm right"></div>
+
+                    <div class="leg left"></div>
+                    <div class="leg right"></div>
+
+                    <div class="football">
+                        ⚽
+                    </div>
+
+                </div>
+
             </div>
+
             <div class="player-info">
-                <h3>Mohamed Salah</h3>
-                <p>Egypt • Forward</p>
+
+                <h3>
+                    Mohamed Salah
+                </h3>
+
+                <p>
+                    🇪🇬 Egypt • Forward
+                </p>
+
             </div>
-            <div class="number">11</div>
+
+            <div class="number">
+                11
+            </div>
+
         </div>
 
-        <!-- PLAYER 9 -->
+
+        <!-- RONALDINHO -->
+
         <div class="player">
-            <div class="player-img">
-                <img src="images/ronaldinho.png" alt="Ronaldinho">
+
+            <div class="player-art">
+
+                <div class="player-person">
+
+                    <div class="head"></div>
+
+                    <div
+                        class="body"
+                        style="background:#152a91;"
+                    ></div>
+
+                    <div class="arm left"></div>
+                    <div class="arm right"></div>
+
+                    <div class="leg left"></div>
+                    <div class="leg right"></div>
+
+                    <div class="football">
+                        ⚽
+                    </div>
+
+                </div>
+
             </div>
+
             <div class="player-info">
-                <h3>Ronaldinho</h3>
-                <p>Brazil • Legend</p>
+
+                <h3>
+                    Ronaldinho
+                </h3>
+
+                <p>
+                    🇧🇷 Brazil • Legend
+                </p>
+
             </div>
-            <div class="number">10</div>
+
+            <div class="number">
+                10
+            </div>
+
         </div>
 
-        <!-- PLAYER 10 -->
+
+        <!-- ZIDANE -->
+
         <div class="player">
-            <div class="player-img">
-                <img src="images/zidane.png" alt="Zinedine Zidane">
+
+            <div class="player-art">
+
+                <div class="player-person">
+
+                    <div class="head"></div>
+
+                    <div
+                        class="body"
+                        style="background:#eeeeee;"
+                    ></div>
+
+                    <div class="arm left"></div>
+                    <div class="arm right"></div>
+
+                    <div class="leg left"></div>
+                    <div class="leg right"></div>
+
+                    <div class="football">
+                        ⚽
+                    </div>
+
+                </div>
+
             </div>
+
             <div class="player-info">
-                <h3>Zinedine Zidane</h3>
-                <p>France • Legend</p>
+
+                <h3>
+                    Zinedine Zidane
+                </h3>
+
+                <p>
+                    🇫🇷 France • Legend
+                </p>
+
             </div>
-            <div class="number">10</div>
+
+            <div class="number">
+                10
+            </div>
+
         </div>
+
 
     </div>
+
 </section>
 
 
-<!-- TEAMS -->
+<!-- =========================
+     TEAMS
+========================= -->
+
 <section id="teams">
 
     <div class="section-head">
+
         <div>
-            <h2 class="section-title">🏆 Top <span>Teams</span></h2>
-            <p class="section-sub">Great Clubs. Greater History.</p>
+
+            <h2 class="section-title">
+                🏆 Top <span class="green">Teams</span>
+            </h2>
+
+            <p class="section-sub">
+                Great Clubs. Greater History.
+            </p>
+
         </div>
 
-        <a href="#" class="view">View All →</a>
+        <a href="#" class="view">
+            View All →
+        </a>
+
     </div>
 
 
     <div class="teams">
 
+
         <div class="team">
-            <img src="images/realmadrid.jpg">
+            <div class="team-logo">👑</div>
+
             <div class="team-info">
                 <h3>Real Madrid</h3>
                 <p>La Liga</p>
             </div>
         </div>
 
+
         <div class="team">
-            <img src="images/barcelona.jpg">
+            <div class="team-logo">🔵🔴</div>
+
             <div class="team-info">
                 <h3>FC Barcelona</h3>
                 <p>La Liga</p>
             </div>
         </div>
 
+
         <div class="team">
-            <img src="images/manutd.jpg">
+            <div class="team-logo">🔴</div>
+
             <div class="team-info">
                 <h3>Manchester United</h3>
                 <p>Premier League</p>
             </div>
         </div>
 
+
         <div class="team">
-            <img src="images/liverpool.jpg">
+            <div class="team-logo">🔴</div>
+
             <div class="team-info">
                 <h3>Liverpool</h3>
                 <p>Premier League</p>
             </div>
         </div>
 
+
         <div class="team">
-            <img src="images/bayern.jpg">
+            <div class="team-logo">🔴⚪</div>
+
             <div class="team-info">
                 <h3>Bayern Munich</h3>
                 <p>Bundesliga</p>
             </div>
         </div>
 
+
         <div class="team">
-            <img src="images/mancity.jpg">
+            <div class="team-logo">🔵</div>
+
             <div class="team-info">
                 <h3>Manchester City</h3>
                 <p>Premier League</p>
             </div>
         </div>
 
+
         <div class="team">
-            <img src="images/psg.jpg">
+            <div class="team-logo">🔵🔴</div>
+
             <div class="team-info">
                 <h3>PSG</h3>
                 <p>Ligue 1</p>
             </div>
         </div>
 
+
         <div class="team">
-            <img src="images/juventus.jpg">
+            <div class="team-logo">⚫⚪</div>
+
             <div class="team-info">
                 <h3>Juventus</h3>
                 <p>Serie A</p>
             </div>
         </div>
 
+
         <div class="team">
-            <img src="images/acmilan.jpg">
+            <div class="team-logo">🔴⚫</div>
+
             <div class="team-info">
                 <h3>AC Milan</h3>
                 <p>Serie A</p>
             </div>
         </div>
 
+
         <div class="team">
-            <img src="images/chelsea.jpg">
+            <div class="team-logo">🔵</div>
+
             <div class="team-info">
                 <h3>Chelsea</h3>
                 <p>Premier League</p>
             </div>
         </div>
 
+
     </div>
+
 </section>
 
 
-<!-- MATCHES / NEWS -->
+<!-- =========================
+     MATCHES / NEWS
+========================= -->
+
 <section id="matches">
 
     <div class="lower">
 
+
         <!-- CHAMPIONS LEAGUE -->
+
         <div class="box">
 
             <div class="champions">
 
                 <div>
+
                     <p style="color:#39ff9a;font-weight:bold;">
                         FEATURED
                     </p>
 
+                    <div
+                        style="
+                        font-size:80px;
+                        margin:10px 0;
+                        "
+                    >
+                        🏆
+                    </div>
+
                     <h2>
-                        UEFA CHAMPIONS<br>
+                        UEFA CHAMPIONS
+                        <br>
                         <span>LEAGUE</span>
                     </h2>
 
-                    <p style="margin-top:10px;color:#bbb;">
+                    <p>
                         Dreams. Drama. Glory.
                     </p>
+
                 </div>
 
             </div>
@@ -924,87 +1864,203 @@ footer strong{
 
 
         <!-- MATCHES -->
+
         <div class="box">
 
             <div class="box-title">
                 📅 Latest Matches
             </div>
 
-            <div class="match">
-                <div class="date">APR 23</div>
-                <div>Real Madrid</div>
-                <div class="score">2 - 1</div>
-                <div>Barcelona</div>
-            </div>
 
             <div class="match">
-                <div class="date">APR 22</div>
-                <div>Man City</div>
-                <div class="score">3 - 0</div>
-                <div>Arsenal</div>
+
+                <div class="date">
+                    APR 23
+                </div>
+
+                <div>
+                    Real Madrid
+                </div>
+
+                <div class="score">
+                    2-1
+                </div>
+
+                <div>
+                    Barcelona
+                </div>
+
             </div>
 
-            <div class="match">
-                <div class="date">APR 21</div>
-                <div>Bayern</div>
-                <div class="score">2 - 0</div>
-                <div>Dortmund</div>
-            </div>
 
             <div class="match">
-                <div class="date">APR 20</div>
-                <div>PSG</div>
-                <div class="score">4 - 2</div>
-                <div>Marseille</div>
+
+                <div class="date">
+                    APR 22
+                </div>
+
+                <div>
+                    Man City
+                </div>
+
+                <div class="score">
+                    3-0
+                </div>
+
+                <div>
+                    Arsenal
+                </div>
+
             </div>
 
+
             <div class="match">
-                <div class="date">APR 19</div>
-                <div>Juventus</div>
-                <div class="score">1 - 1</div>
-                <div>Inter</div>
+
+                <div class="date">
+                    APR 21
+                </div>
+
+                <div>
+                    Bayern
+                </div>
+
+                <div class="score">
+                    2-0
+                </div>
+
+                <div>
+                    Dortmund
+                </div>
+
+            </div>
+
+
+            <div class="match">
+
+                <div class="date">
+                    APR 20
+                </div>
+
+                <div>
+                    PSG
+                </div>
+
+                <div class="score">
+                    4-2
+                </div>
+
+                <div>
+                    Marseille
+                </div>
+
+            </div>
+
+
+            <div class="match">
+
+                <div class="date">
+                    APR 19
+                </div>
+
+                <div>
+                    Juventus
+                </div>
+
+                <div class="score">
+                    1-1
+                </div>
+
+                <div>
+                    Inter
+                </div>
+
             </div>
 
         </div>
 
 
         <!-- NEWS -->
+
         <div class="box">
 
             <div class="box-title">
                 📰 Football News
             </div>
 
-            <div class="news">
-                <img src="images/messi.png">
-                <div>
-                    <h4>Messi continues to make football history</h4>
-                    <p>2 hours ago</p>
-                </div>
-            </div>
 
             <div class="news">
-                <img src="images/ronaldo.png">
-                <div>
-                    <h4>Ronaldo enters another new chapter</h4>
-                    <p>4 hours ago</p>
+
+                <div class="news-icon">
+                    ⚽
                 </div>
+
+                <div>
+                    <h4>
+                        Messi continues to make football history
+                    </h4>
+
+                    <p>
+                        2 hours ago
+                    </p>
+                </div>
+
             </div>
 
-            <div class="news">
-                <img src="images/mbappe.png">
-                <div>
-                    <h4>Mbappé shines on the big stage</h4>
-                    <p>6 hours ago</p>
-                </div>
-            </div>
 
             <div class="news">
-                <img src="images/haaland.png">
-                <div>
-                    <h4>Haaland's incredible form continues</h4>
-                    <p>8 hours ago</p>
+
+                <div class="news-icon">
+                    🏆
                 </div>
+
+                <div>
+                    <h4>
+                        Ronaldo enters another new chapter
+                    </h4>
+
+                    <p>
+                        4 hours ago
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="news">
+
+                <div class="news-icon">
+                    ⭐
+                </div>
+
+                <div>
+                    <h4>
+                        Mbappé shines on the big stage
+                    </h4>
+
+                    <p>
+                        6 hours ago
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="news">
+
+                <div class="news-icon">
+                    🔥
+                </div>
+
+                <div>
+                    <h4>
+                        Haaland's incredible form continues
+                    </h4>
+
+                    <p>
+                        8 hours ago
+                    </p>
+                </div>
+
             </div>
 
         </div>
@@ -1014,66 +2070,121 @@ footer strong{
 </section>
 
 
-<!-- QUOTE -->
+<!-- =========================
+     ABOUT
+========================= -->
+
 <section id="about">
 
     <div class="quote">
 
+        <div class="quote-mark">
+            “
+        </div>
+
         <p>
-            “Football is not just a game,
+            Football is not just a game,
             it's a passion, a lifestyle,
-            a reason to live.”
+            a reason to live.
         </p>
 
-        <span>— Football</span>
+        <span>
+            — Football World
+        </span>
 
     </div>
 
 </section>
 
 
-<!-- GALLERY -->
-<section id="gallery">
+<!-- =========================
+     GALLERY
+========================= -->
+
+<section>
 
     <div class="section-head">
+
         <div>
-            <h2 class="section-title">📸 Football <span>Gallery</span></h2>
-            <p class="section-sub">Moments that define greatness.</p>
+
+            <h2 class="section-title">
+                📸 Football <span class="green">Gallery</span>
+            </h2>
+
+            <p class="section-sub">
+                Moments that define greatness.
+            </p>
+
         </div>
 
-        <a href="#" class="view">View All →</a>
     </div>
+
 
     <div class="gallery">
 
-        <img src="images/gallery1.jpg">
-        <img src="images/gallery2.jpg">
-        <img src="images/gallery3.jpg">
-        <img src="images/gallery4.jpg">
-        <img src="images/gallery5.jpg">
+        <div class="gallery-card">⚽</div>
+        <div class="gallery-card">🏆</div>
+        <div class="gallery-card">🥅</div>
+        <div class="gallery-card">👟</div>
+        <div class="gallery-card">🏟️</div>
 
     </div>
 
 </section>
 
 
-<!-- FOOTER -->
+<!-- =========================
+     FOOTER
+========================= -->
+
 <footer>
 
     <div>
-        <strong>⚽ Football</strong><br>
+
+        <strong>
+            ⚽ Football
+        </strong>
+
+        <br>
+
         More Than A Game
+
     </div>
+
 
     <div>
         Home &nbsp; Players &nbsp; Teams &nbsp; Matches &nbsp; About
     </div>
+
 
     <div>
         © 2026 Football World
     </div>
 
 </footer>
+
+
+<!-- =========================
+     LOADING SCRIPT
+========================= -->
+
+<script>
+
+window.addEventListener("load",function(){
+
+    setTimeout(function(){
+
+        document
+        .getElementById("loader")
+        .classList
+        .add("hide");
+
+    },2400);
+
+});
+
+</script>
+
 
 </body>
 </html>
